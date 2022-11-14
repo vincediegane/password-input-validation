@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="width: 400px;">
+      <div id="tooltip" style="width: 250px; display: none; background-color: rgba(0, 0, 0, 0.5); color: white; float: right;">
+        <span>Le mot de passe doit contenir:</span>
+        <div>
+          <ul>
+            <li>
+              <div style="display: flex;">
+                <span>Au moins 8 caractères</span>
+                <span id="size" style="color: #0f0; display: none;">ok</span>
+              </div>
+            </li>
+            <li>
+              <div style="display: flex;">
+                <span>Une majuscule</span>
+                <span id="upper" style="color: #0f0; display: none;">ok</span>
+              </div>
+            </li>
+            <li>
+              <div style="display: flex;">
+                <span>Une minuscule</span>
+                <span id="lower" style="color: #0f0; display: none;">ok</span>
+              </div>
+            </li>
+            <li>
+              <div style="display: flex;">
+                <span>Un symbole</span>
+                <span id="symbol" style="color: #0f0; display: none;">ok</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <input type="password" id="password" type="text" name="input" >
+      </div>
+    </div>
+
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>
