@@ -8,13 +8,6 @@ let tooltip = document.querySelector("#tooltip");
 let satisfiedCondition = false;
 
 function validate(pattern) {
-  if(pattern.length >= 8) {
-    satisfiedCondition = true;
-    size.style.display = "block";
-  } else {
-    satisfiedCondition = false;
-    size.style.display = "none";
-  }
   if(patternContainUpper(pattern)) {
     satisfiedCondition = true;
     upper.style.display = "block";
@@ -31,20 +24,32 @@ function validate(pattern) {
   }
   let Regex = /[^a-z\d]/i;
   if(Regex.test(pattern)) {
-    satisfiedConditions = true;
+    satisfiedCondition = true;
     symbol.style.display = "block";
   } else {
     satisfiedCondition = false;
     symbol.style.display = "none";
   }
+  if(pattern.length >= 8) {
+    satisfiedCondition = true;
+    size.style.display = "block";
+  } else {
+    satisfiedCondition = false;
+    size.style.display = "none";
+  }
 }
 
-password.addEventListener("focus", () => {
+function hideOrShowValidations() {
+  validate(password.value);
   if(satisfiedCondition) {
     hideValidations();
   } else {
     showValidations();
   }
+}
+
+password.addEventListener("focus", () => {
+  hideOrShowValidations();
 });
 
 password.addEventListener("blur", () => {
@@ -52,12 +57,7 @@ password.addEventListener("blur", () => {
 });
 
 password.addEventListener("keyup", () => {
-  validate(password.value);
-  if(satisfiedCondition) {
-    hideValidations();
-  } else {
-    showValidations();
-  }
+  hideOrShowValidations();
 });
 
 function hideValidations() {
