@@ -5,43 +5,55 @@ let lower = document.querySelector("#lower");
 let symbol = document.querySelector("#symbol");
 let tooltip = document.querySelector("#tooltip");
 
-let satisfiedCondition = false;
+let satisfiedConditions = [];
 
 function validate(pattern) {
+  satisfiedConditions = [];
   if(patternContainUpper(pattern)) {
-    satisfiedCondition = true;
+    satisfiedConditions.push(true);
     upper.style.display = "block";
   } else {
-    satisfiedCondition = false;
+    satisfiedConditions.push(false);
     upper.style.display = "none";
   }
   if(patternContainLower(pattern)) {
-    satisfiedCondition = true;
+    satisfiedConditions.push(true);
     lower.style.display = "block";
   } else {
-    satisfiedCondition = false;
+    satisfiedConditions.push(false);
     lower.style.display = "none";
   }
   let Regex = /[^a-z\d]/i;
   if(Regex.test(pattern)) {
-    satisfiedCondition = true;
+    satisfiedConditions.push(true);
     symbol.style.display = "block";
   } else {
-    satisfiedCondition = false;
+    satisfiedConditions.push(false);
     symbol.style.display = "none";
   }
   if(pattern.length >= 8) {
-    satisfiedCondition = true;
+    satisfiedConditions.push(true);
     size.style.display = "block";
   } else {
-    satisfiedCondition = false;
+    satisfiedConditions.push(false);
     size.style.display = "none";
   }
 }
 
+function isAllConditionsPassed() {
+  let test = true;
+  for(let t of satisfiedConditions) {
+    if(t == false) {
+      test = t;
+      break;
+    }
+  }
+  return test;
+}
+
 function hideOrShowValidations() {
   validate(password.value);
-  if(satisfiedCondition) {
+  if(isAllConditionsPassed()) {
     hideValidations();
   } else {
     showValidations();
